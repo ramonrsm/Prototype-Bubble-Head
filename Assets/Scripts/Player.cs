@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
 
 	[Header("Gun")]
 	public Transform 	spawnBullets;
-	public GameObject	bulletPrefab;
 
 
 	// Use this for initialization
@@ -19,8 +18,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		
+				
 		if(Input.GetMouseButton(0)){
 			
 			#region Rotação Player
@@ -44,8 +42,9 @@ public class Player : MonoBehaviour {
 
         // Atirar
         if (Input.GetButtonDown("Jump"))
-        {			
-            ObjectPool.instance.reuseObjects(bulletPrefab, spawnBullets);
+        {
+			GameObject bullet = ObjectPool.instance.bulletPrefab;
+            ObjectPool.instance.reuseObjects(bullet, spawnBullets);
         }
     }
 }

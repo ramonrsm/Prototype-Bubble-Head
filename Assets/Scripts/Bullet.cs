@@ -42,4 +42,8 @@ public class Bullet : MonoBehaviour {
 			}
 		}
 	}
+	
+	void LateUpdate(){
+		previousFrame = transform.position;
+	}
 }

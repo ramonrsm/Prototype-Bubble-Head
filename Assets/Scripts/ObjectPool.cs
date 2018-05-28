@@ -7,6 +7,10 @@ public class ObjectPool : MonoBehaviour {
 	[Header("Bullets")]
 	public GameObject bulletPrefab;
 	public int 		  amountBullets = 5;
+
+	[Header("Enemys")]
+	public GameObject EnemyPrefab;
+	public int 		  amountEnemy = 8;
 	public Dictionary <int, Queue<GameObject>> poolDictionary;
 
 	#region Padrao Singleton
@@ -74,5 +78,8 @@ public class ObjectPool : MonoBehaviour {
 
 		// Instanciar Balas
 		createObjects(amountBullets, bulletPrefab);
+
+		//Instanciar Inimigos
+		createObjects(amountEnemy, EnemyPrefab);
 	}
 }
