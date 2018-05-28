@@ -33,18 +33,19 @@ public class Player : MonoBehaviour {
 
 				if(raycastHit.transform.tag.Equals("Enemy")){
 
-					Transform target = raycastHit.transform;
+					Transform target    = raycastHit.transform;
 					Quaternion rotation = Quaternion.LookRotation(target.position, transform.position);
-					transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speedRotation * Time.deltaTime);
+					transform.rotation  = Quaternion.Slerp(transform.rotation, rotation, speedRotation * Time.deltaTime);
 				}
 			}
 
-			#endregion
+			#endregion		
+		}
 
-			// Atirar
-			if(Input.GetButtonDown("Jump")){
-				ObjectPool.instance.reuseObjects(bulletPrefab, spawnBullets.position, spawnBullets.rotation);
-			}
-		}		
-	}
+        // Atirar
+        if (Input.GetButtonDown("Jump"))
+        {			
+            ObjectPool.instance.reuseObjects(bulletPrefab, spawnBullets);
+        }
+    }
 }

@@ -56,7 +56,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 26c3c4ee192acde4bb864f392d91dda3, type: 2}
   m_StaticBatchInfo:
@@ -96,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f15f8869b3b3748ac493cc84354310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
-  lifeTime: 3
+  speed: 10
+  lifeTime: 6
 --- !u!135 &135025610775044220
 SphereCollider:
   m_ObjectHideFlags: 1

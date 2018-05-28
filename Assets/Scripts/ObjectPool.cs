@@ -50,7 +50,7 @@ public class ObjectPool : MonoBehaviour {
 		}
 	}
 
-	public GameObject reuseObjects(GameObject obj, Vector3 position, Quaternion rotation){
+	public GameObject reuseObjects(GameObject obj, Transform spawnPosition){
 
 		int key = obj.GetInstanceID();
 
@@ -61,12 +61,11 @@ public class ObjectPool : MonoBehaviour {
 
 			if(!reuseObject.activeInHierarchy){
 				reuseObject.SetActive(true);
-				reuseObject.transform.position = position;
-				reuseObject.transform.rotation = rotation;
+				reuseObject.transform.position = spawnPosition.position;
+				reuseObject.transform.rotation = spawnPosition.rotation;
 				return reuseObject;
 			}
 		}
-
 		return null;
 	}
 
@@ -76,10 +75,4 @@ public class ObjectPool : MonoBehaviour {
 		// Instanciar Balas
 		createObjects(amountBullets, bulletPrefab);
 	}
-	
-	// Update is called once per frame
-	void Update () {		
-		
-	}
-
 }
