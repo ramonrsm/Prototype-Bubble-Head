@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33842014870615474}
   - component: {fileID: 23259382492037436}
   - component: {fileID: 65674945250947116}
+  - component: {fileID: 114252985150521834}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -55,7 +56,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: cf4e901b653bfa943a8a9dbb83462b2f, type: 2}
   m_StaticBatchInfo:
@@ -96,3 +96,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114252985150521834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1135989946622528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c7caa495d74fe48ad91554d32f2199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5

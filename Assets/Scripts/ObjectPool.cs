@@ -63,7 +63,7 @@ public class ObjectPool : MonoBehaviour {
 			GameObject reuseObject = poolDictionary[key].Dequeue();
 			poolDictionary[key].Enqueue(reuseObject);
 
-			if(!reuseObject.activeInHierarchy){
+			if(!reuseObject.activeInHierarchy && reuseObject != null){
 				reuseObject.SetActive(true);
 				reuseObject.transform.position = spawnPosition.position;
 				reuseObject.transform.rotation = spawnPosition.rotation;
