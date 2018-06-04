@@ -11,25 +11,25 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		previousFrame = transform.position;
+		//previousFrame = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		#region Tempo de vida da Bala
+		/*#region Tempo de vida da Bala
 		timer += Time.deltaTime;
 
 		if(timer > lifeTime){
 			transform.gameObject.SetActive(false);
 			timer = 0;
 		}
-		#endregion
+		#endregion*/
 
 		// Movimentação da bala
 		transform.Translate((Vector3.forward * speed) * Time.deltaTime, Space.Self);
 
-		Vector3 pos = (transform.position - previousFrame);
+		/*Vector3 pos = (transform.position - previousFrame);
 		pos.Normalize();
 		Ray ray = new Ray(previousFrame, pos);
 		RaycastHit hit;
@@ -40,10 +40,10 @@ public class Bullet : MonoBehaviour {
 				hit.transform.gameObject.SetActive(false);
 				gameObject.SetActive(false);
 			}
-		}
+		}*/
 	}
 	
 	void LateUpdate(){
-		previousFrame = transform.position;
+		//previousFrame = transform.position;
 	}
 }

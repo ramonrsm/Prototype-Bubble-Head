@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour {
+public class ObjectPoolManager : MonoBehaviour {
 
-	[Header("Bullets")]
-	public GameObject bulletPrefab;
-	public int 		  amountBullets = 5;
+	[SerializeField]
+	private List<Pool> listaPool;
+	
+	[System.Serializable]
+	public class Pool{
+		public GameObject prefab;
+		public int 		  amount;
+	}
 
-	[Header("Enemys")]
-	public GameObject EnemyPrefab;
-	public int 		  amountEnemy = 8;
-	public Dictionary <int, Queue<GameObject>> poolDictionary;
+	#region Singleton
 
-	#region Padrao Singleton
+	private static ObjectPoolManager _instance;
 
-	private static ObjectPool _instance;
-
-	public static ObjectPool instance
+	public static ObjectPoolManager instance
 	{		
 		get{
 			if(_instance == null){
-				_instance = FindObjectOfType<ObjectPool>();
+				_instance = FindObjectOfType<ObjectPoolManager>();
 			}				
 			return _instance;
 		}		
@@ -29,10 +29,11 @@ public class ObjectPool : MonoBehaviour {
 
 	#endregion
 
+	public Dictionary <int, Queue<GameObject>> poolDictionary;	
+
 	/*----------------------------------------------------------------------------------------------------- */
 
-	void Awake()
-	{
+	void Awake(){
 		this.poolDictionary = new Dictionary<int, Queue<GameObject>>();
 	}
 
@@ -54,19 +55,23 @@ public class ObjectPool : MonoBehaviour {
 		}
 	}
 
-	public GameObject reuseObjects(GameObject obj, Transform spawnPosition){
+	public GameObject reuseObjects(GameObject obj, Transform transformGO){
 
 		int key = obj.GetInstanceID();
 
 		if(poolDictionary.ContainsKey(key)){
 
 			GameObject reuseObject = poolDictionary[key].Dequeue();
+
 			poolDictionary[key].Enqueue(reuseObject);
 
+			reuseObject.SetActive(false);
+
 			if(!reuseObject.activeInHierarchy && reuseObject != null){
+
+				reuseObject.transform.position = transformGO.position;
+				reuseObject.transform.rotation = transformGO.rotation;
 				reuseObject.SetActive(true);
-				reuseObject.transform.position = spawnPosition.position;
-				reuseObject.transform.rotation = spawnPosition.rotation;
 				return reuseObject;
 			}
 		}
@@ -75,11 +80,9 @@ public class ObjectPool : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		// Instanciar Balas
-		createObjects(amountBullets, bulletPrefab);
-
-		//Instanciar Inimigos
-		createObjects(amountEnemy, EnemyPrefab);
+		
+		foreach(Pool pool in listaPool){
+			createObjects(pool.amount, pool.prefab);
+		}
 	}
 }

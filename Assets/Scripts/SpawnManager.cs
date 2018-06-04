@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
-	[SerializeField] private float timeToSpawn = 2;
-	private float time = 0;
+	[SerializeField] private float	timeToSpawn = 3f;
+	private float	time;
 
-	// Use this for initialization
-	void Start () {
-		
+	void Start()
+	{
+		time = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		time += Time.deltaTime;
-		
-		if(time >= timeToSpawn){
-			time = 0;
-			ObjectPool.instance.reuseObjects(ObjectPool.instance.EnemyPrefab, this.transform);
-		}
+	void Update()
+	{
+		time += Time.deltaTime;		
+	}
+
+
+	public void SpawnPosition(float timeToSpawn, GameObject gameObejct,Transform transformGO){
+		gameObejct.transform.position = transformGO.position;
+		gameObejct.transform.rotation = transformGO.rotation;
+	}
+
+	public void SpawnPosition(GameObject gameObejct,Transform transformGO){
+		gameObejct.transform.position = transformGO.position;
+		gameObejct.transform.rotation = transformGO.rotation;
 	}
 }

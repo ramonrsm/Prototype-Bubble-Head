@@ -10,11 +10,7 @@ public class Player : MonoBehaviour {
 	[Header("Gun")]
 	public Transform 	spawnBullets;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public GameObject	bulletPrefab;
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +18,6 @@ public class Player : MonoBehaviour {
 		if(Input.GetMouseButton(0)){
 			
 			#region Rotação Player
-
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			RaycastHit raycastHit;
@@ -36,15 +31,15 @@ public class Player : MonoBehaviour {
 					transform.rotation  = Quaternion.Slerp(transform.rotation, rotation, speedRotation * Time.deltaTime);
 				}
 			}
-
 			#endregion		
 		}
 
         // Atirar
         if (Input.GetButtonDown("Jump"))
-        {
-			GameObject bullet = ObjectPool.instance.bulletPrefab;
-            ObjectPool.instance.reuseObjects(bullet, spawnBullets);
+        {	
+			ObjectPoolManager objectPoolManager = ObjectPoolManager.instance;
+
+			GameObject bullet = objectPoolManager.reuseObjects(bulletPrefab, spawnBullets);
         }
     }
 }
